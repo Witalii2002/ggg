@@ -15,3 +15,19 @@ def mask_account_card(input_string: str) -> str:
           return "Invalid input format"
       card_number = parts[-1].strip()
       return masks.get_mask_card_number(card_number)
+
+    def get_date(date_string):
+        """ """
+
+        try:
+            year = int(date_string[0:4])
+            month = int(date_string[5:7])
+            day = int(date_string[8:10])
+
+            # Crucial: Ensure month and day are within valid ranges.
+            if not (1 <= month <= 12 and 1 <= day <= 31):
+                return "Invalid date format"
+
+            return f"{day}.{month}.{year}"
+        except (ValueError, IndexError):
+            return "Invalid date format"
