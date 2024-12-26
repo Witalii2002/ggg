@@ -1,7 +1,7 @@
 import masks
 
 def mask_account_card(input_string: str) -> str:
-    """ """
+    """Возвращать строку с замаскированным номером """
     if "Счет" in input_string:
       parts = input_string.split("Счет ")
       if len(parts) < 2:
@@ -17,7 +17,7 @@ def mask_account_card(input_string: str) -> str:
       return masks.get_mask_card_number(card_number)
 
     def get_date(date_string):
-        """ """
+        """возвращает строку с датой  """
 
         try:
             year = int(date_string[0:4])
