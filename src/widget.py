@@ -1,33 +1,39 @@
-import masks
+from masks import get_mask_account, get_mask_card_number
+
 
 def mask_account_card(input_string: str) -> str:
-    """Возвращать строку с замаскированным номером """
+    """Возвращать строку с замаскированным номером."""
     if "Счет" in input_string:
-      parts = input_string.split("Счет ")
-      if len(parts) < 2:
-          return "Invalid input format"
-      account_number = parts[1].strip()
-      return masks.get_mask_account(account_number)
+        try:
+            parts = input_string.split("Счет ", 1)  # Split only once
+            account_number = parts[1].strip()
+            return "Счет " + str(get_mask_account(account_number))  # Include type in output
+        except IndexError:
+            return "Invalid input format"
 
     else:
-      parts = input_string.split(" ")
-      if len(parts) < 2:
-          return "Invalid input format"
-      card_number = parts[-1].strip()
-      return masks.get_mask_card_number(card_number)
-
-    def get_date(date_string):
-        """возвращает строку с датой  """
-
         try:
-            year = int(date_string[0:4])
-            month = int(date_string[5:7])
-            day = int(date_string[8:10])
+            parts = input_string.rsplit(" ", 1)  # split only once from the right side
+            card_type = parts[0].strip()
+            card_number = parts[1].strip()
 
-            # Crucial: Ensure month and day are within valid ranges.
-            if not (1 <= month <= 12 and 1 <= day <= 31):
-                return "Invalid date format"
+            return f"{card_type} {get_mask_card_number(card_number)}"  # Include type in output
+        except (IndexError, ValueError):
+            return "Invalid input format"
 
-            return f"{day}.{month}.{year}"
-        except (ValueError, IndexError):
+
+def get_date(date_string: str) -> str:
+    """возвращает строку с датой в формате  "ДД.ММ.ГГГГ" """
+
+    try:
+        year = int(date_string[0:4])
+        month = int(date_string[5:7])
+        day = int(date_string[8:10])
+
+        # Crucial: Ensure month and day are within valid ranges.
+        if not (1 <= month <= 12 and 1 <= day <= 31):
             return "Invalid date format"
+
+        return f"{day}.{month}.{year}"
+    except (ValueError, IndexError):
+        return "Invalid date format"
