@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 
 
 def filter_by_state(data: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
-    """Возвращает новый список словарей, содержит те словари, у которых ключ state соответствует указанному значению"""
+    """Возвращает новый список словарей, по ключу  state"""
     filtered_data: List[Dict[str, Any]] = []
     for item in data:
         if "state" in item and item["state"] == state:
