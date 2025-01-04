@@ -14,5 +14,5 @@ def get_mask_account(account_number: str) -> str:
     if len(account_number) < 4:
         return "Invalid account number length"
 
-    masked_account = "**" + account_number[-4:]
-    return  masked_account
+    masked_account = "**" + str(account_number[-4:])
+    return masked_account
