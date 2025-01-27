@@ -26,12 +26,12 @@ def get_date(date_string: str) -> str:
     """возвращает строку с датой в формате  "ДД.ММ.ГГГГ" """
 
     try:
-        year = int(date_string[0:4])
-        month = int(date_string[5:7])
-        day = int(date_string[8:10])
+        year = str(date_string[0:4])
+        month = str(date_string[5:7])
+        day = str(date_string[8:10])
 
         # Crucial: Ensure month and day are within valid ranges.
-        if not (1 <= month <= 12 and 1 <= day <= 31):
+        if not (1 <= int(month) <= 12 and 1 <= int(day) <= 31):
             return "Invalid date format"
 
         return f"{day}.{month}.{year}"
@@ -39,4 +39,4 @@ def get_date(date_string: str) -> str:
         return "Invalid date format"
 
 
-# print(get_date("2024-03-11T02:26:18.671407"))
+print(get_date("2025-09-05T02:26:18.671407"))

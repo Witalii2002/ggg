@@ -16,7 +16,7 @@ def test_mask_account_card(input_mask, output_mask):
 
 
 @pytest.mark.parametrize(
-    "input_time, output_time", [("2024-03-11T02:26:18.671407", "11.3.2024"), ("", "Invalid date format")]
+    "input_time, output_time", [("2024-03-11T02:26:18.671407", "11.03.2024"), ("", "Invalid date format")]
 )
 def test_get_date(input_time, output_time):
     assert get_date(input_time) == output_time
