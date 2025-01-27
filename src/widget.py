@@ -1,4 +1,4 @@
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(input_string: str) -> str:
@@ -26,14 +26,17 @@ def get_date(date_string: str) -> str:
     """возвращает строку с датой в формате  "ДД.ММ.ГГГГ" """
 
     try:
-        year = int(date_string[0:4])
-        month = int(date_string[5:7])
-        day = int(date_string[8:10])
+        year = str(date_string[0:4])
+        month = str(date_string[5:7])
+        day = str(date_string[8:10])
 
         # Crucial: Ensure month and day are within valid ranges.
-        if not (1 <= month <= 12 and 1 <= day <= 31):
+        if not (1 <= int(month) <= 12 and 1 <= int(day) <= 31):
             return "Invalid date format"
 
         return f"{day}.{month}.{year}"
     except (ValueError, IndexError):
         return "Invalid date format"
+
+
+print(get_date("2025-09-05T02:26:18.671407"))
